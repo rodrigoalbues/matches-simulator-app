@@ -1,4 +1,4 @@
-# Matches Simulator App
+# Matches Simulator App - Em construção
 
 App Android Nativo de Simulação de Partidas. Este repositório foi organizado em algumas branches que representam as implementações realizadas durante os seguintes conteúdos/vídeos:
 
