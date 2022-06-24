@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="me.dio.simulator">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -24,8 +26,8 @@
         </activity>
         <activity
             android:name=".ui.DetailActivity"
-            android:theme="@style/Theme.Simulator.NoActionBar"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Simulator.NoActionBar" />
     </application>
 
 </manifest>
