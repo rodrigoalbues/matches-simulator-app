@@ -19,8 +19,9 @@
             android:id="@+id/rvMatches"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/match_item"
-            tools:itemCount="3"/>
+            tools:itemCount="3"
+            tools:listitem="@layout/match_item" />
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

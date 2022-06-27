@@ -7,11 +7,12 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import me.dio.simulator.R;
 import me.dio.simulator.data.MatchesApi;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private MatchesApi matchesApi;
-    private RecyclerView.Adapter matchesAdapter;
+    private MatchesAdapter matchesAdapter = new MatchesAdapter(Collections.emptyList());
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupMatchesList() {
         binding.rvMatches.setHasFixedSize(true);
         binding.rvMatches.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvMatches.setAdapter(matchesAdapter);
         findMatchesFromAPI();
     }
 
@@ -67,7 +69,13 @@ public class MainActivity extends AppCompatActivity {
             view.animate().rotationBy(360).setDuration(500).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
-                    //TODO Implementar o algoritmo de simulação de partidas.
+                    Random random = new Random();
+                    for (int i = 0; i < matchesAdapter.getItemCount(); i++) {
+                        Match match = matchesAdapter.getMatches().get(i);
+                        match.getHomeTeam().setScore(random.nextInt(match.getHomeTeam().getStars() + 1));
+                        match.getAwayTeam().setScore(random.nextInt(match.getAwayTeam().getStars() + 1));
+                        matchesAdapter.notifyItemChanged(i);
+                    }
                 }
             });
         });
