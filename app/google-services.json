@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "150828009279",
+    "project_id": "simulator-bootcamp-santander",
+    "storage_bucket": "simulator-bootcamp-santander.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150828009279:android:3b88a167b15b7ec89a758a",
+        "android_client_info": {
+          "package_name": "me.dio.simulator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "150828009279-87mu1j4k953n12rsq7ct8m6eef9397o1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCirqvU8HULWEd-V-CfkCGmEDQNgkQwhyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "150828009279-87mu1j4k953n12rsq7ct8m6eef9397o1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

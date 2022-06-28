@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setHttpClient();
+        setupHttpClient();
         setupMatchesList();
         setupMatchesRefresh();
         setupFloatingActionButton();
     }
 
-    private void setHttpClient() {
+    private void setupHttpClient() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://rodrigoalbues.github.io/matches-simulator-api/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -57,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
         binding.rvMatches.setHasFixedSize(true);
         binding.rvMatches.setLayoutManager(new LinearLayoutManager(this));
         binding.rvMatches.setAdapter(matchesAdapter);
-        findMatchesFromAPI();
+        findMatchesFromApi();
     }
 
     private void setupMatchesRefresh() {
-        binding.srlMatches.setOnRefreshListener(this::findMatchesFromAPI);
+        binding.srlMatches.setOnRefreshListener(this::findMatchesFromApi);
     }
 
     private void setupFloatingActionButton() {
@@ -81,11 +82,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void findMatchesFromAPI() {
+    private void findMatchesFromApi() {
         binding.srlMatches.setRefreshing(true);
         matchesApi.getMatches().enqueue(new Callback<List<Match>>() {
             @Override
-            public void onResponse(Call<List<Match>> call, Response<List<Match>> response) {
+            public void onResponse(@NonNull Call<List<Match>> call, @NonNull Response<List<Match>> response) {
                 if (response.isSuccessful()) {
                     List<Match> matches = response.body();
                     matchesAdapter = new MatchesAdapter(matches);
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Match>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Match>> call, @NonNull Throwable t) {
                 showErrorMessage();
                 binding.srlMatches.setRefreshing(false);
             }
@@ -107,5 +108,4 @@ public class MainActivity extends AppCompatActivity {
     private void showErrorMessage() {
         Snackbar.make(binding.fabSimulate, R.string.error_api, Snackbar.LENGTH_LONG).show();
     }
-
 }
