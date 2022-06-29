@@ -23,10 +23,10 @@ class DetailActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        LoadMatchFromExtra()
+        loadMatchFromExtra()
     }
 
-    private fun LoadMatchFromExtra() {
+    private fun loadMatchFromExtra() {
         intent?.extras?.getParcelable<Match>(Extras.MATCH)?.let {
             Glide.with(this).load(it.place.image).into(binding.ivPlace)
             supportActionBar?.title = it.place.name
@@ -37,7 +37,7 @@ class DetailActivity : AppCompatActivity() {
             binding.tvHomeTeamName.text = it.homeTeam.name
             binding.rbHomeTeamStars.rating = it.homeTeam.stars.toFloat()
             if (it.homeTeam.score != null) {
-                binding.tvHomeTeamName.text = it.homeTeam.score.toString()
+                binding.tvHomeTeamScore.text = it.homeTeam.score.toString()
             }
 
             Glide.with(this).load(it.awayTeam.image).into(binding.ivAwayTeam)
